@@ -1,8 +1,0 @@
-@startuml
-!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/latest/C4_Context.puml
-
-Person(User, "Пользователь", "Пользователь трекера задач")
-System(MainService, "Главный сервис", "Главный сервис, который отвечает за клиентское API и за регистрацию и аутентификацию пользователей")
-
-Rel(User, MainService, "Пользуется")
-@enduml
