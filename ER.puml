@@ -1,0 +1,47 @@
+@startuml
+!define Entity(name, desc) class name as "desc" << (E, #FF7700) >>
+!define primary_key(x) <color:#FF3333>x</color>
+!define foreign_key(x) <color:#3333FF>x</color>
+
+Entity(User, "User") {
+    + primary_key(user_id) : int
+    --
+    username : varchar
+    password : varchar
+    email : varchar
+}
+
+Entity(Task, "Task") {
+    + primary_key(task_id) : int
+    + foreign_key(user_id) : int
+    --
+    title : varchar
+    description : text
+    status : varchar
+}
+
+Entity(Statistic, "Statistic") {
+    + primary_key(statistic_id) : int
+    + foreign_key(task_id) : int
+    --
+    views : int
+    likes : int
+}
+
+Entity(Comment, "Comment") {
+    + primary_key(comment_id) : int
+    + foreign_key(task_id) : int
+    + foreign_key(user_id) : int
+    + foreign_key(parent_id) : int
+    --
+    text : text
+    created_at : datetime
+}
+
+Task -- Statistic : "has"
+Task -- Comment : "has"
+User -- Task : "creates"
+User -- Comment : "comments"
+
+
+@enduml
